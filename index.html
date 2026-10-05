@@ -1,0 +1,3879 @@
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>pola:us — Human × AI</title>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, "Noto Sans KR", sans-serif;
+  background: #f7f6f2;
+  color: #171717;
+  line-height: 1.6;
+}
+
+button,
+input,
+select {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+
+  background: rgba(247,246,242,.92);
+  backdrop-filter: blur(15px);
+
+  border-bottom: 1px solid #ddd;
+
+  z-index: 1000;
+}
+
+.nav {
+  max-width: 1200px;
+  height: 100%;
+
+  margin: auto;
+  padding: 0 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.logo span {
+  font-weight: 300;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #222;
+
+  font-size: 11px;
+
+  margin-left: 25px;
+
+  letter-spacing: 1px;
+}
+
+
+/* =====================================================
+   COMMON
+===================================================== */
+
+section {
+  padding: 120px 20px;
+}
+
+.section-inner {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.section-title {
+  font-family: Georgia, serif;
+  font-size: clamp(45px, 7vw, 70px);
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 18px;
+}
+
+.section-desc {
+  color: #777;
+  font-size: 15px;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  padding: 100px 20px;
+}
+
+.hero small {
+  letter-spacing: 5px;
+  color: #777;
+  font-size: 11px;
+}
+
+.hero h1 {
+  font-family: Georgia, serif;
+
+  font-size: clamp(75px, 14vw, 160px);
+
+  font-weight: 400;
+
+  line-height: .9;
+
+  margin: 25px 0;
+}
+
+.hero p {
+  color: #666;
+  font-size: 17px;
+}
+
+.hero-button {
+  margin-top: 35px;
+
+  border: none;
+
+  padding: 15px 30px;
+
+  border-radius: 50px;
+
+  background: #111;
+  color: white;
+}
+
+
+/* =====================================================
+   CREATION
+===================================================== */
+
+.creation {
+  background: #ebe9e4;
+}
+
+.creation-intro {
+  max-width: 700px;
+  margin-bottom: 60px;
+}
+
+
+/* =====================================================
+   PROCESS INDICATOR
+===================================================== */
+
+.process-indicator {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 50px;
+}
+
+.process-step {
+  text-align: center;
+  min-width: 130px;
+}
+
+.process-circle {
+  width: 42px;
+  height: 42px;
+
+  margin: auto;
+
+  border-radius: 50%;
+
+  background: #d5d3ce;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 12px;
+}
+
+.process-step.active .process-circle {
+  background: #111;
+  color: white;
+}
+
+.process-step.done .process-circle {
+  background: #555;
+  color: white;
+}
+
+.process-label {
+  margin-top: 8px;
+
+  font-size: 10px;
+
+  color: #888;
+}
+
+.process-step.active .process-label,
+.process-step.done .process-label {
+  color: #111;
+  font-weight: bold;
+}
+
+.process-line {
+  width: 70px;
+  height: 1px;
+
+  background: #ccc;
+}
+
+
+/* =====================================================
+   CREATION GRID
+===================================================== */
+
+.creation-grid {
+  display: grid;
+
+  grid-template-columns: 1.1fr .9fr;
+
+  gap: 50px;
+
+  align-items: start;
+}
+
+
+/* =====================================================
+   HUMAN BRIEF
+===================================================== */
+
+.brief-box {
+  background: white;
+
+  padding: 30px;
+
+  border-radius: 18px;
+
+  margin-bottom: 25px;
+
+  border: 1px solid #ddd;
+}
+
+.brief-label {
+  font-size: 10px;
+
+  color: #999;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 12px;
+}
+
+.brief-title {
+  font-family: Georgia, serif;
+
+  font-size: 28px;
+
+  margin-bottom: 20px;
+}
+
+.brief-input {
+  width: 100%;
+
+  border: 1px solid #ddd;
+
+  border-radius: 10px;
+
+  padding: 14px;
+
+  outline: none;
+
+  background: #fafafa;
+}
+
+.brief-input:focus {
+  border-color: #111;
+}
+
+.brief-selects {
+  display: flex;
+
+  gap: 8px;
+
+  flex-wrap: wrap;
+
+  margin-top: 12px;
+}
+
+.mood-button {
+  border: 1px solid #ddd;
+
+  background: white;
+
+  border-radius: 30px;
+
+  padding: 9px 13px;
+
+  font-size: 12px;
+}
+
+.mood-button.selected {
+  background: #111;
+  color: white;
+
+  border-color: #111;
+}
+
+
+/* =====================================================
+   CAMERA / UPLOAD
+===================================================== */
+
+.camera-box {
+  background: #111;
+
+  padding: 18px;
+
+  border-radius: 20px;
+}
+
+.video-wrapper {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 16 / 10;
+
+  overflow: hidden;
+
+  border-radius: 12px;
+
+  background: #222;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transform: scaleX(-1);
+}
+
+.camera-placeholder {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  color: #777;
+
+  font-size: 12px;
+}
+
+.camera-controls {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: 15px;
+}
+
+.btn {
+  border: none;
+
+  padding: 11px 17px;
+
+  border-radius: 30px;
+
+  background: white;
+
+  color: #111;
+
+  font-size: 12px;
+
+  transition: .2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn.primary {
+  background: #111;
+  color: white;
+}
+
+.btn.dark {
+  background: #333;
+  color: white;
+}
+
+.btn:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+}
+
+.upload-label {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+
+  padding: 11px 17px;
+
+  border-radius: 30px;
+
+  background: white;
+
+  color: #111;
+
+  font-size: 12px;
+
+  cursor: pointer;
+
+  transition: .2s ease;
+}
+
+.upload-label:hover {
+  transform: translateY(-1px);
+}
+
+#photoUpload {
+  display: none;
+}
+
+.camera-status {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  margin-top: 13px;
+
+  color: #888;
+
+  font-size: 11px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #777;
+}
+
+.status-dot.active {
+  background: white;
+}
+
+.camera-error {
+  display: none;
+
+  margin-top: 12px;
+
+  padding: 10px;
+
+  background: #3c2525;
+
+  color: #ffbcbc;
+
+  border-radius: 8px;
+
+  font-size: 11px;
+}
+
+.upload-note {
+  margin-top: 12px;
+
+  color: #666;
+
+  font-size: 10px;
+
+  line-height: 1.5;
+}
+
+
+/* =====================================================
+   SOURCE PREVIEW
+===================================================== */
+
+.source-preview {
+  display: none;
+
+  margin-top: 18px;
+
+  background: #fff;
+
+  padding: 12px;
+
+  border-radius: 12px;
+}
+
+.source-preview.show {
+  display: block;
+}
+
+.source-preview img {
+  width: 100%;
+
+  max-height: 250px;
+
+  object-fit: cover;
+
+  border-radius: 8px;
+}
+
+.source-preview-info {
+  margin-top: 8px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  font-size: 10px;
+
+  color: #888;
+}
+
+
+/* =====================================================
+   AI PRODUCTION
+===================================================== */
+
+.ai-production {
+  display: none;
+
+  background: #111;
+
+  color: white;
+
+  border-radius: 18px;
+
+  padding: 40px 25px;
+
+  text-align: center;
+
+  min-height: 430px;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+.ai-production.show {
+  display: flex;
+}
+
+.ai-production small {
+  color: #777;
+
+  letter-spacing: 3px;
+}
+
+.ai-production h2 {
+  font-family: Georgia, serif;
+
+  font-size: 38px;
+
+  font-weight: 400;
+
+  margin: 20px 0;
+}
+
+.ai-loader {
+  width: 55px;
+  height: 55px;
+
+  border: 2px solid #444;
+
+  border-top-color: white;
+
+  border-radius: 50%;
+
+  margin: 25px auto;
+
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ai-progress {
+  max-width: 300px;
+
+  height: 2px;
+
+  background: #333;
+
+  margin: 20px auto;
+
+  overflow: hidden;
+}
+
+.ai-progress-bar {
+  width: 0;
+  height: 100%;
+
+  background: white;
+
+  transition: width .4s ease;
+}
+
+.ai-log {
+  color: #777;
+
+  font-size: 10px;
+
+  min-height: 20px;
+}
+
+
+/* =====================================================
+   AI DRAFT
+===================================================== */
+
+.ai-draft {
+  display: none;
+}
+
+.ai-draft.show {
+  display: block;
+}
+
+.draft-label {
+  margin-bottom: 15px;
+
+  font-size: 10px;
+
+  color: #999;
+
+  letter-spacing: 2px;
+}
+
+.draft-card {
+  background: white;
+
+  padding: 15px;
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.12);
+}
+
+.draft-image-wrap {
+  position: relative;
+
+  overflow: hidden;
+}
+
+.draft-card img {
+  width: 100%;
+
+  display: block;
+
+  filter:
+    contrast(1.04)
+    saturate(.8)
+    sepia(.08);
+}
+
+.ai-overlay {
+  position: absolute;
+
+  top: 12px;
+  left: 12px;
+
+  background: rgba(0,0,0,.7);
+
+  color: white;
+
+  padding: 6px 9px;
+
+  font-size: 8px;
+
+  letter-spacing: 1px;
+}
+
+.draft-info {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-top: 12px;
+
+  font-size: 10px;
+
+  color: #999;
+}
+
+
+/* =====================================================
+   AI VARIATIONS
+===================================================== */
+
+.ai-variations {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 8px;
+
+  margin-top: 12px;
+}
+
+.variation {
+  border: 1px solid #ddd;
+
+  background: white;
+
+  padding: 5px;
+
+  cursor: pointer;
+
+  opacity: .65;
+
+  transition: .2s;
+}
+
+.variation:hover,
+.variation.selected {
+  opacity: 1;
+
+  border-color: #111;
+}
+
+.variation img {
+  width: 100%;
+
+  aspect-ratio: 1 / 1;
+
+  object-fit: cover;
+}
+
+.variation-name {
+  text-align: center;
+
+  font-size: 8px;
+
+  padding: 5px 0;
+
+  color: #777;
+}
+
+
+/* =====================================================
+   HUMAN REVIEW
+===================================================== */
+
+.review-panel {
+  display: none;
+
+  margin-top: 25px;
+}
+
+.review-panel.show {
+  display: block;
+}
+
+.review-title {
+  font-size: 11px;
+
+  letter-spacing: 2px;
+
+  color: #777;
+
+  margin-bottom: 8px;
+}
+
+.review-text {
+  font-family: Georgia, serif;
+
+  font-size: 20px;
+
+  margin-bottom: 15px;
+}
+
+.caption-input {
+  width: 100%;
+
+  border: 1px solid #ddd;
+
+  border-radius: 10px;
+
+  padding: 13px;
+
+  background: white;
+
+  outline: none;
+}
+
+.caption-input:focus {
+  border-color: #111;
+}
+
+
+/* =====================================================
+   HUMAN TOUCH
+===================================================== */
+
+.human-touch {
+  margin-top: 20px;
+}
+
+.human-touch-title {
+  font-size: 10px;
+
+  color: #999;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 9px;
+}
+
+.sticker-list {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 7px;
+}
+
+.sticker {
+  border: 1px solid #ddd;
+
+  background: white;
+
+  border-radius: 30px;
+
+  padding: 8px 12px;
+
+  font-size: 16px;
+}
+
+.sticker.selected {
+  background: #111;
+
+  color: white;
+
+  border-color: #111;
+}
+
+
+/* =====================================================
+   FINAL POLAROID
+===================================================== */
+
+.final-result {
+  display: none;
+}
+
+.final-result.show {
+  display: block;
+}
+
+.polaroid {
+  background: white;
+
+  padding: 15px 15px 45px;
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.12);
+
+  transform: rotate(-1deg);
+
+  max-width: 400px;
+
+  margin: auto;
+}
+
+.polaroid img {
+  width: 100%;
+
+  display: block;
+}
+
+.polaroid-caption {
+  text-align: center;
+
+  margin-top: 15px;
+
+  font-family: Georgia, serif;
+
+  font-size: 21px;
+}
+
+.polaroid-date {
+  text-align: center;
+
+  font-size: 9px;
+
+  color: #999;
+
+  margin-top: 4px;
+}
+
+
+/* =====================================================
+   PROCESS SECTION
+===================================================== */
+
+.process-section {
+  background: #f7f6f2;
+}
+
+.process-cards {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap: 1px;
+
+  background: #ddd;
+
+  margin-top: 50px;
+}
+
+.process-card {
+  background: white;
+
+  padding: 40px 30px;
+
+  min-height: 270px;
+}
+
+.process-card small {
+  color: #999;
+
+  letter-spacing: 2px;
+}
+
+.process-card h3 {
+  font-family: Georgia, serif;
+
+  font-size: 30px;
+
+  font-weight: 400;
+
+  margin: 20px 0 12px;
+}
+
+.process-card p {
+  color: #777;
+
+  font-size: 13px;
+
+  line-height: 1.9;
+}
+
+.process-card.human {
+  border-top: 3px solid #111;
+}
+
+.process-card.ai {
+  border-top: 3px solid #888;
+}
+
+.final-decision {
+  text-align: center;
+
+  padding: 50px 20px;
+
+  border-top: 1px solid #ddd;
+
+  margin-top: 50px;
+}
+
+.final-decision small {
+  color: #999;
+
+  letter-spacing: 2px;
+}
+
+.final-decision h3 {
+  font-family: Georgia, serif;
+
+  font-weight: 400;
+
+  font-size: 27px;
+
+  margin-top: 15px;
+}
+
+.final-decision p {
+  color: #777;
+
+  font-size: 13px;
+
+  margin-top: 10px;
+}
+
+
+/* =====================================================
+   TOGETHER
+===================================================== */
+
+.together {
+  background: #111;
+
+  color: white;
+
+  text-align: center;
+}
+
+.together .section-desc {
+  color: #aaa;
+}
+
+.together-title {
+  font-family: Georgia, serif;
+
+  font-size: clamp(50px,9vw,100px);
+
+  font-weight: 400;
+
+  margin: 30px 0 50px;
+}
+
+.together-flow {
+  max-width: 750px;
+
+  margin: auto;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 12px;
+}
+
+.flow-item {
+  border: 1px solid #444;
+
+  padding: 15px 20px;
+
+  border-radius: 50px;
+}
+
+.flow-arrow {
+  color: #666;
+}
+
+.together-note {
+  margin-top: 40px;
+
+  color: #777;
+
+  font-size: 13px;
+}
+
+
+/* =====================================================
+   MEMORY WALL
+===================================================== */
+
+.memory {
+  background: #efede8;
+}
+
+.memory-wall {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fill,minmax(180px,1fr));
+
+  gap: 30px;
+
+  margin-top: 50px;
+}
+
+.memory-card {
+  background: white;
+
+  padding: 10px 10px 22px;
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.08);
+
+  transform:
+    rotate(var(--rotation));
+}
+
+.memory-card img {
+  width: 100%;
+
+  aspect-ratio: 1/1.05;
+
+  object-fit: cover;
+}
+
+.memory-caption {
+  text-align: center;
+
+  font-family: Georgia, serif;
+
+  margin-top: 10px;
+}
+
+.memory-meta {
+  text-align: center;
+
+  font-size: 9px;
+
+  color: #999;
+
+  margin-top: 3px;
+}
+
+
+/* =====================================================
+   FINAL
+===================================================== */
+
+.final {
+  min-height: 80vh;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+}
+
+.final p {
+  color: #888;
+
+  max-width: 500px;
+
+  margin: 20px auto;
+}
+
+.final h2 {
+  font-family: Georgia, serif;
+
+  font-size: clamp(50px,9vw,110px);
+
+  line-height: 1.05;
+
+  font-weight: 400;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+  text-align: center;
+
+  padding: 40px;
+
+  color: #999;
+
+  font-size: 11px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:800px) {
+
+  .nav a {
+    display: none;
+  }
+
+  .creation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .process-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .process-line {
+    width: 25px;
+  }
+
+  .process-step {
+    min-width: 80px;
+  }
+
+  .ai-variations {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+  <div class="nav">
+
+    <div class="logo">
+      pola<span>:us</span>
+    </div>
+
+    <div>
+
+      <a href="#creation">
+        CREATE
+      </a>
+
+      <a href="#process">
+        PROCESS
+      </a>
+
+      <a href="#memory">
+        MEMORY
+      </a>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+  <div>
+
+    <small>
+      HUMAN × AI
+    </small>
+
+    <h1>
+      pola:us
+    </h1>
+
+    <p>
+      완벽한 AI와 불완전한 인간.<br>
+      우리는 무엇을 함께 만들 수 있을까요?
+    </p>
+
+    <button
+      class="hero-button"
+      onclick="goToCreation()"
+    >
+      나의 순간 만들기 →
+    </button>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CREATION
+===================================================== -->
+
+<section
+  class="creation"
+  id="creation"
+>
+
+<div class="section-inner">
+
+
+  <div class="creation-intro">
+
+    <div class="section-title">
+      Create together.
+    </div>
+
+    <p class="section-desc">
+
+      인간이 먼저 기획합니다.
+
+      <br>
+
+      AI가 그 아이디어를 바탕으로
+      시안을 제작합니다.
+
+      <br>
+
+      그리고 인간이 다시 검토하고 수정합니다.
+
+      <br><br>
+
+      <strong>
+        최종 결정은 언제나 인간의 몫입니다.
+      </strong>
+
+    </p>
+
+  </div>
+
+
+
+  <!-- PROCESS INDICATOR -->
+
+  <div class="process-indicator">
+
+    <div
+      class="process-step active"
+      id="step1"
+    >
+
+      <div class="process-circle">
+        01
+      </div>
+
+      <div class="process-label">
+        HUMAN · 기획
+      </div>
+
+    </div>
+
+
+    <div class="process-line"></div>
+
+
+    <div
+      class="process-step"
+      id="step2"
+    >
+
+      <div class="process-circle">
+        02
+      </div>
+
+      <div class="process-label">
+        AI · 제작
+      </div>
+
+    </div>
+
+
+    <div class="process-line"></div>
+
+
+    <div
+      class="process-step"
+      id="step3"
+    >
+
+      <div class="process-circle">
+        03
+      </div>
+
+      <div class="process-label">
+        HUMAN · 검토
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="creation-grid">
+
+
+    <!-- =================================================
+         LEFT
+    ================================================= -->
+
+    <div>
+
+
+      <!-- HUMAN BRIEF -->
+
+      <div
+        class="brief-box"
+        id="briefBox"
+      >
+
+        <div class="brief-label">
+          STEP 01 · HUMAN
+        </div>
+
+        <div class="brief-title">
+          먼저, 당신이 기획해주세요.
+        </div>
+
+        <input
+          class="brief-input"
+          id="briefInput"
+          placeholder="이 사진을 어떤 기억으로 남기고 싶나요?"
+          maxlength="100"
+        >
+
+
+        <div
+          class="brief-selects"
+          id="moodButtons"
+        >
+
+          <button
+            class="mood-button selected"
+            data-mood="따뜻한"
+          >
+            따뜻한
+          </button>
+
+          <button
+            class="mood-button"
+            data-mood="빈티지"
+          >
+            빈티지
+          </button>
+
+          <button
+            class="mood-button"
+            data-mood="일상적인"
+          >
+            일상적인
+          </button>
+
+          <button
+            class="mood-button"
+            data-mood="영화 같은"
+          >
+            영화 같은
+          </button>
+
+          <button
+            class="mood-button"
+            data-mood="자연스러운"
+          >
+            자연스러운
+          </button>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- CAMERA -->
+
+      <div
+        class="camera-box"
+        id="cameraBox"
+      >
+
+        <div class="video-wrapper">
+
+          <video
+            id="video"
+            autoplay
+            playsinline
+            muted
+          ></video>
+
+
+          <div
+            class="camera-placeholder"
+            id="placeholder"
+          >
+
+            CAMERA
+
+            <br><br>
+
+            START CAMERA를 눌러주세요.<br>
+            또는 아래에서 사진을 업로드해주세요.
+
+          </div>
+
+        </div>
+
+
+        <div class="camera-controls">
+
+          <button
+            class="btn primary"
+            id="startButton"
+          >
+            START CAMERA
+          </button>
+
+
+          <button
+            class="btn"
+            id="captureButton"
+            disabled
+          >
+            TAKE PHOTO
+          </button>
+
+
+          <label
+            class="upload-label"
+            for="photoUpload"
+          >
+            UPLOAD PHOTO
+          </label>
+
+          <input
+            type="file"
+            id="photoUpload"
+            accept="image/*"
+          >
+
+
+          <button
+            class="btn dark"
+            id="stopButton"
+            disabled
+          >
+            STOP
+          </button>
+
+        </div>
+
+
+        <div class="camera-status">
+
+          <div
+            class="status-dot"
+            id="statusDot"
+          ></div>
+
+          <span id="statusText">
+            카메라 또는 사진 업로드를 선택해주세요.
+          </span>
+
+        </div>
+
+
+        <div
+          class="upload-note"
+        >
+          JPG, PNG, WEBP 등 이미지 파일을 사용할 수 있습니다.
+        </div>
+
+
+        <div
+          class="camera-error"
+          id="cameraError"
+        ></div>
+
+
+        <!-- UPLOADED IMAGE PREVIEW -->
+
+        <div
+          class="source-preview"
+          id="sourcePreview"
+        >
+
+          <img
+            id="sourcePreviewImage"
+            alt="uploaded preview"
+          >
+
+          <div class="source-preview-info">
+
+            <span>
+              PHOTO SELECTED
+            </span>
+
+            <span id="sourceFileName">
+              —
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         RIGHT
+    ================================================= -->
+
+    <div>
+
+
+      <!-- AI PRODUCTION -->
+
+      <div
+        class="ai-production"
+        id="aiProduction"
+      >
+
+        <div>
+
+          <small>
+            STEP 02 · AI
+          </small>
+
+          <h2>
+            AI is creating.
+          </h2>
+
+          <div class="ai-loader"></div>
+
+          <div class="ai-progress">
+
+            <div
+              class="ai-progress-bar"
+              id="aiProgress"
+            ></div>
+
+          </div>
+
+          <div
+            class="ai-log"
+            id="aiLog"
+          >
+            당신의 기획을 분석하고 있습니다.
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- AI DRAFT -->
+
+      <div
+        class="ai-draft"
+        id="aiDraft"
+      >
+
+        <div class="draft-label">
+          AI DRAFT · 01
+        </div>
+
+
+        <div class="draft-card">
+
+          <div class="draft-image-wrap">
+
+            <img
+              id="draftImage"
+              alt="AI draft"
+            >
+
+            <div class="ai-overlay">
+              AI GENERATED DRAFT
+            </div>
+
+          </div>
+
+
+          <div class="draft-info">
+
+            <span>
+              AI VISUAL DIRECTION
+            </span>
+
+            <span id="draftMood">
+              따뜻한
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- AI VARIATIONS -->
+
+        <div class="ai-variations">
+
+          <div
+            class="variation selected"
+            id="variationWarm"
+            data-filter="warm"
+          >
+
+            <img
+              id="variationImage1"
+              alt="warm AI draft"
+            >
+
+            <div class="variation-name">
+              DRAFT 01 · WARM
+            </div>
+
+          </div>
+
+
+          <div
+            class="variation"
+            id="variationFilm"
+            data-filter="film"
+          >
+
+            <img
+              id="variationImage2"
+              alt="film AI draft"
+            >
+
+            <div class="variation-name">
+              DRAFT 02 · FILM
+            </div>
+
+          </div>
+
+
+          <div
+            class="variation"
+            id="variationMono"
+            data-filter="mono"
+          >
+
+            <img
+              id="variationImage3"
+              alt="minimal AI draft"
+            >
+
+            <div class="variation-name">
+              DRAFT 03 · MINIMAL
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- HUMAN REVIEW -->
+
+        <div
+          class="review-panel"
+          id="reviewPanel"
+        >
+
+          <div class="review-title">
+            STEP 03 · HUMAN REVIEW & EDIT
+          </div>
+
+          <div class="review-text">
+            이제 당신이 완성해주세요.
+          </div>
+
+
+          <input
+            class="caption-input"
+            id="caption"
+            maxlength="50"
+            placeholder="AI의 결과물을 그대로 사용하지 않아도 됩니다."
+          />
+
+
+          <div class="human-touch">
+
+            <div class="human-touch-title">
+              YOUR HUMAN TOUCH
+            </div>
+
+
+            <div class="sticker-list">
+
+              <button
+                class="sticker"
+                data-sticker="♡"
+              >
+                ♡
+              </button>
+
+              <button
+                class="sticker"
+                data-sticker="✦"
+              >
+                ✦
+              </button>
+
+              <button
+                class="sticker"
+                data-sticker="☁"
+              >
+                ☁
+              </button>
+
+              <button
+                class="sticker"
+                data-sticker=":)">
+                :)
+              </button>
+
+              <button
+                class="sticker"
+                data-sticker="LOVE"
+              >
+                LOVE
+              </button>
+
+              <button
+                class="sticker"
+                data-sticker="2026"
+              >
+                2026
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="camera-controls">
+
+            <button
+              class="btn primary"
+              id="finalizeButton"
+            >
+              HUMAN FINALIZE →
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- FINAL RESULT -->
+
+      <div
+        class="final-result"
+        id="finalResult"
+      >
+
+        <div class="draft-label">
+          FINAL · HUMAN APPROVED
+        </div>
+
+
+        <div class="polaroid">
+
+          <img
+            id="finalImage"
+            alt="final polaroid"
+          >
+
+          <div
+            class="polaroid-caption"
+            id="finalCaption"
+          >
+            pola:us
+          </div>
+
+          <div
+            class="polaroid-date"
+            id="finalDate"
+          ></div>
+
+        </div>
+
+
+        <div class="camera-controls">
+
+          <button
+            class="btn primary"
+            id="downloadButton"
+          >
+            SAVE POLAROID
+          </button>
+
+          <button
+            class="btn"
+            id="wallButton"
+          >
+            MEMORY WALL에 남기기
+          </button>
+
+          <button
+            class="btn"
+            id="againButton"
+          >
+            다시 만들기
+          </button>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PROCESS
+===================================================== -->
+
+<section
+  class="process-section"
+  id="process"
+>
+
+<div class="section-inner">
+
+  <div class="section-title">
+    How we create.
+  </div>
+
+  <p class="section-desc">
+
+    인간과 AI는 서로의 역할을 대신하지 않습니다.
+
+    <br>
+
+    인간의 기획을 AI가 제작하고,
+    인간이 다시 검토하고 수정합니다.
+
+  </p>
+
+
+  <div class="process-cards">
+
+
+    <div class="process-card human">
+
+      <small>
+        STEP 01 · HUMAN
+      </small>
+
+      <h3>
+        기획
+      </h3>
+
+      <p>
+
+        무엇을 만들 것인지
+        인간이 결정합니다.
+
+        <br><br>
+
+        아이디어와 목적,
+        분위기와 방향을 설정합니다.
+
+      </p>
+
+    </div>
+
+
+    <div class="process-card ai">
+
+      <small>
+        STEP 02 · AI
+      </small>
+
+      <h3>
+        제작
+      </h3>
+
+      <p>
+
+        인간이 정한 방향을 바탕으로
+        AI가 시안을 제작합니다.
+
+        <br><br>
+
+        AI는 빠르게 다양한 가능성을
+        보여주는 역할을 합니다.
+
+      </p>
+
+    </div>
+
+
+    <div class="process-card human">
+
+      <small>
+        STEP 03 · HUMAN
+      </small>
+
+      <h3>
+        검토 & 수정
+      </h3>
+
+      <p>
+
+        AI가 만든 시안을
+        인간이 검토합니다.
+
+        <br><br>
+
+        필요한 부분을 수정하고
+        최종 결과물을 확정합니다.
+
+      </p>
+
+    </div>
+
+
+  </div>
+
+
+  <div class="final-decision">
+
+    <small>
+      FINAL DECISION
+    </small>
+
+    <h3>
+      최종 판단과 확정은 항상 인간이 맡습니다.
+    </h3>
+
+    <p>
+
+      AI가 만든 시안은 완성본이 아닙니다.<br>
+
+      인간의 검토와 수정 과정을 거쳐야
+      비로소 완성본이 됩니다.
+
+    </p>
+
+  </div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     TOGETHER
+===================================================== -->
+
+<section class="together">
+
+<div class="section-inner">
+
+  <div class="section-title">
+    Not AI or Human.
+  </div>
+
+  <p class="section-desc">
+
+    하나를 선택하는 것이 아니라,<br>
+    서로 다른 역할을 연결하는 것.
+
+  </p>
+
+
+  <div class="together-title">
+    Made together.
+  </div>
+
+
+  <div class="together-flow">
+
+    <div class="flow-item">
+      HUMAN · 기획
+    </div>
+
+    <div class="flow-arrow">
+      →
+    </div>
+
+    <div class="flow-item">
+      AI · 제작
+    </div>
+
+    <div class="flow-arrow">
+      →
+    </div>
+
+    <div class="flow-item">
+      HUMAN · 검토 & 수정
+    </div>
+
+  </div>
+
+
+  <div class="together-note">
+
+    AI는 시안을 만들 수 있지만,<br>
+    무엇을 최종적으로 남길지는 인간이 결정합니다.
+
+  </div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MEMORY WALL
+===================================================== -->
+
+<section
+  class="memory"
+  id="memory"
+>
+
+<div class="section-inner">
+
+  <div class="section-title">
+    Memory Wall
+  </div>
+
+  <p class="section-desc">
+
+    인간의 선택으로 완성된
+    순간들이 모입니다.
+
+  </p>
+
+
+  <div
+    class="memory-wall"
+    id="memoryWall"
+  ></div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FINAL
+===================================================== -->
+
+<section class="final">
+
+<div>
+
+  <p>
+    AI는 완벽한 결과물을 만들 수 있습니다.
+  </p>
+
+
+  <h2>
+
+    But we remember<br>
+    the imperfect.
+
+  </h2>
+
+
+  <p>
+
+    조금 흔들리고,
+    조금 서툴고,
+
+    <br>
+
+    그래서 더 우리다운 순간.
+
+  </p>
+
+
+  <div
+    style="
+      margin-top:50px;
+      font-family:Georgia,serif;
+      font-size:32px;
+    "
+  >
+    pola:us
+  </div>
+
+
+  <div
+    style="
+      margin-top:8px;
+      color:#999;
+    "
+  >
+    Human × AI
+  </div>
+
+</div>
+
+</section>
+
+
+
+<footer>
+  pola:us — Human × AI
+</footer>
+
+
+
+<canvas
+  id="photoCanvas"
+  style="display:none;"
+></canvas>
+
+
+
+<script>
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const video =
+  document.getElementById("video");
+
+const canvas =
+  document.getElementById("photoCanvas");
+
+const startButton =
+  document.getElementById("startButton");
+
+const captureButton =
+  document.getElementById("captureButton");
+
+const stopButton =
+  document.getElementById("stopButton");
+
+const photoUpload =
+  document.getElementById("photoUpload");
+
+const videoPlaceholder =
+  document.getElementById("placeholder");
+
+const cameraError =
+  document.getElementById("cameraError");
+
+const statusDot =
+  document.getElementById("statusDot");
+
+const statusText =
+  document.getElementById("statusText");
+
+const briefInput =
+  document.getElementById("briefInput");
+
+const aiProduction =
+  document.getElementById("aiProduction");
+
+const aiProgress =
+  document.getElementById("aiProgress");
+
+const aiLog =
+  document.getElementById("aiLog");
+
+const aiDraft =
+  document.getElementById("aiDraft");
+
+const draftImage =
+  document.getElementById("draftImage");
+
+const draftMood =
+  document.getElementById("draftMood");
+
+const reviewPanel =
+  document.getElementById("reviewPanel");
+
+const caption =
+  document.getElementById("caption");
+
+const finalizeButton =
+  document.getElementById("finalizeButton");
+
+const finalResult =
+  document.getElementById("finalResult");
+
+const finalImage =
+  document.getElementById("finalImage");
+
+const finalCaption =
+  document.getElementById("finalCaption");
+
+const finalDate =
+  document.getElementById("finalDate");
+
+const downloadButton =
+  document.getElementById("downloadButton");
+
+const wallButton =
+  document.getElementById("wallButton");
+
+const againButton =
+  document.getElementById("againButton");
+
+const memoryWall =
+  document.getElementById("memoryWall");
+
+const sourcePreview =
+  document.getElementById("sourcePreview");
+
+const sourcePreviewImage =
+  document.getElementById("sourcePreviewImage");
+
+const sourceFileName =
+  document.getElementById("sourceFileName");
+
+const variationWarm =
+  document.getElementById("variationWarm");
+
+const variationFilm =
+  document.getElementById("variationFilm");
+
+const variationMono =
+  document.getElementById("variationMono");
+
+const variationImage1 =
+  document.getElementById("variationImage1");
+
+const variationImage2 =
+  document.getElementById("variationImage2");
+
+const variationImage3 =
+  document.getElementById("variationImage3");
+
+
+let cameraStream = null;
+
+let capturedPhoto = null;
+
+let aiDraftPhoto = null;
+
+let selectedMood = "따뜻한";
+
+let selectedSticker = "";
+
+let selectedFilter = "warm";
+
+
+/* =====================================================
+   STEP CONTROL
+===================================================== */
+
+function setStep(number) {
+
+  const steps = [
+    document.getElementById("step1"),
+    document.getElementById("step2"),
+    document.getElementById("step3")
+  ];
+
+
+  steps.forEach(
+    (step, index) => {
+
+      step.classList.remove(
+        "active",
+        "done"
+      );
+
+
+      if(index + 1 < number) {
+
+        step.classList.add(
+          "done"
+        );
+
+      }
+
+      else if(index + 1 === number) {
+
+        step.classList.add(
+          "active"
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   MOOD
+===================================================== */
+
+document
+  .querySelectorAll(".mood-button")
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        document
+          .querySelectorAll(".mood-button")
+          .forEach(
+            b => b.classList.remove(
+              "selected"
+            )
+          );
+
+
+        button.classList.add(
+          "selected"
+        );
+
+
+        selectedMood =
+          button.dataset.mood;
+
+        draftMood.textContent =
+          selectedMood;
+
+      }
+    );
+
+  });
+
+
+/* =====================================================
+   CAMERA
+===================================================== */
+
+async function startCamera() {
+
+  cameraError.style.display =
+    "none";
+
+
+  if(
+    !navigator.mediaDevices ||
+    !navigator.mediaDevices.getUserMedia
+  ) {
+
+    showCameraError(
+      "이 브라우저에서는 카메라를 사용할 수 없습니다."
+    );
+
+    return;
+
+  }
+
+
+  const secure =
+    location.protocol === "https:" ||
+    location.hostname === "localhost" ||
+    location.hostname === "127.0.0.1";
+
+
+  if(!secure) {
+
+    showCameraError(
+      "카메라는 HTTPS 또는 localhost에서만 작동합니다. VS Code에서 Live Server로 실행해주세요."
+    );
+
+    return;
+
+  }
+
+
+  try {
+
+    statusText.textContent =
+      "카메라 권한을 기다리는 중...";
+
+
+    cameraStream =
+      await navigator.mediaDevices.getUserMedia({
+
+        video: {
+
+          facingMode: "user",
+
+          width: {
+            ideal: 1280
+          },
+
+          height: {
+            ideal: 720
+          }
+
+        },
+
+        audio: false
+
+      });
+
+
+    video.srcObject =
+      cameraStream;
+
+
+    video.onloadedmetadata =
+      async () => {
+
+        await video.play();
+
+
+        videoPlaceholder.style.display =
+          "none";
+
+
+        sourcePreview.classList.remove(
+          "show"
+        );
+
+
+        captureButton.disabled =
+          false;
+
+
+        stopButton.disabled =
+          false;
+
+
+        statusDot.classList.add(
+          "active"
+        );
+
+
+        statusText.textContent =
+          "카메라 연결 완료";
+
+      };
+
+  }
+
+  catch(error) {
+
+    console.error(error);
+
+
+    let message =
+      "카메라를 사용할 수 없습니다.";
+
+
+    if(
+      error.name ===
+      "NotAllowedError"
+    ) {
+
+      message =
+        "카메라 권한이 거부되었습니다. 브라우저의 카메라 권한을 허용해주세요.";
+
+    }
+
+
+    else if(
+      error.name ===
+      "NotFoundError"
+    ) {
+
+      message =
+        "사용 가능한 카메라를 찾을 수 없습니다.";
+
+    }
+
+
+    else if(
+      error.name ===
+      "NotReadableError"
+    ) {
+
+      message =
+        "카메라가 다른 프로그램에서 사용 중일 수 있습니다.";
+
+    }
+
+
+    showCameraError(message);
+
+  }
+
+}
+
+
+function showCameraError(message) {
+
+  cameraError.textContent =
+    message;
+
+  cameraError.style.display =
+    "block";
+
+  statusText.textContent =
+    "카메라 연결 실패";
+
+}
+
+
+/* =====================================================
+   TAKE PHOTO
+===================================================== */
+
+function takePhoto() {
+
+  if(!cameraStream) {
+
+    showCameraError(
+      "먼저 카메라를 시작해주세요."
+    );
+
+    return;
+
+  }
+
+
+  const width =
+    video.videoWidth;
+
+  const height =
+    video.videoHeight;
+
+
+  if(!width || !height) {
+
+    showCameraError(
+      "카메라 화면이 아직 준비되지 않았습니다."
+    );
+
+    return;
+
+  }
+
+
+  canvas.width =
+    width;
+
+  canvas.height =
+    height;
+
+
+  const ctx =
+    canvas.getContext("2d");
+
+
+  ctx.save();
+
+
+  ctx.translate(
+    width,
+    0
+  );
+
+
+  ctx.scale(
+    -1,
+    1
+  );
+
+
+  ctx.drawImage(
+    video,
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  ctx.restore();
+
+
+  capturedPhoto =
+    canvas.toDataURL(
+      "image/jpeg",
+      .92
+    );
+
+
+  stopCamera();
+
+
+  showSourcePreview(
+    capturedPhoto,
+    "CAMERA PHOTO"
+  );
+
+
+  setStep(2);
+
+
+  startAIProduction();
+
+}
+
+
+/* =====================================================
+   UPLOAD PHOTO
+===================================================== */
+
+photoUpload.addEventListener(
+  "change",
+  handlePhotoUpload
+);
+
+
+function handlePhotoUpload(event) {
+
+  const file =
+    event.target.files[0];
+
+
+  if(!file) {
+    return;
+  }
+
+
+  if(!file.type.startsWith("image/")) {
+
+    showCameraError(
+      "이미지 파일만 업로드할 수 있습니다."
+    );
+
+    return;
+
+  }
+
+
+  stopCamera();
+
+
+  const reader =
+    new FileReader();
+
+
+  reader.onload =
+    function(e) {
+
+      capturedPhoto =
+        e.target.result;
+
+
+      showSourcePreview(
+        capturedPhoto,
+        file.name
+      );
+
+
+      statusDot.classList.add(
+        "active"
+      );
+
+
+      statusText.textContent =
+        "사진 업로드 완료";
+
+
+      setStep(2);
+
+
+      startAIProduction();
+
+    };
+
+
+  reader.onerror =
+    function() {
+
+      showCameraError(
+        "사진을 불러오는 중 문제가 발생했습니다."
+      );
+
+    };
+
+
+  reader.readAsDataURL(file);
+
+}
+
+
+/* =====================================================
+   SOURCE PREVIEW
+===================================================== */
+
+function showSourcePreview(
+  image,
+  filename
+) {
+
+  sourcePreviewImage.src =
+    image;
+
+  sourceFileName.textContent =
+    filename;
+
+  sourcePreview.classList.add(
+    "show"
+  );
+
+}
+
+
+/* =====================================================
+   STOP CAMERA
+===================================================== */
+
+function stopCamera() {
+
+  if(cameraStream) {
+
+    cameraStream
+      .getTracks()
+      .forEach(
+        track => track.stop()
+      );
+
+    cameraStream = null;
+
+  }
+
+
+  video.srcObject =
+    null;
+
+
+  captureButton.disabled =
+    true;
+
+  stopButton.disabled =
+    true;
+
+
+  statusDot.classList.remove(
+    "active"
+  );
+
+}
+
+
+/* =====================================================
+   AI PRODUCTION
+===================================================== */
+
+function startAIProduction() {
+
+  aiDraft.classList.remove(
+    "show"
+  );
+
+  reviewPanel.classList.remove(
+    "show"
+  );
+
+  finalResult.classList.remove(
+    "show"
+  );
+
+
+  aiProduction.classList.add(
+    "show"
+  );
+
+
+  aiProgress.style.width =
+    "0%";
+
+
+  const logs = [
+
+    "당신의 기획을 분석하고 있습니다.",
+
+    "사진의 구도와 분위기를 분석하고 있습니다.",
+
+    "Human brief를 시각적 방향으로 변환하고 있습니다.",
+
+    "AI visual direction을 생성하고 있습니다.",
+
+    "첫 번째 시안을 제작하고 있습니다.",
+
+    "Polaroid mood를 적용하고 있습니다."
+
+  ];
+
+
+  let progress =
+    0;
+
+  let logIndex =
+    0;
+
+
+  const interval =
+    setInterval(
+      () => {
+
+        progress += 16.6;
+
+
+        aiProgress.style.width =
+          Math.min(
+            progress,
+            100
+          ) + "%";
+
+
+        if(
+          logs[logIndex]
+        ) {
+
+          aiLog.textContent =
+            logs[logIndex];
+
+          logIndex++;
+
+        }
+
+
+        if(progress >= 100) {
+
+          clearInterval(
+            interval
+          );
+
+
+          setTimeout(
+            showAIDraft,
+            500
+          );
+
+        }
+
+      },
+      550
+    );
+
+}
+
+
+/* =====================================================
+   AI DRAFT
+===================================================== */
+
+function showAIDraft() {
+
+  aiProduction.classList.remove(
+    "show"
+  );
+
+
+  aiDraft.classList.add(
+    "show"
+  );
+
+
+  draftImage.src =
+    capturedPhoto;
+
+
+  aiDraftPhoto =
+    capturedPhoto;
+
+
+  draftMood.textContent =
+    selectedMood;
+
+
+  /*
+    AI가 여러 가지 시안을
+    만든 것처럼 3개의 시각적 버전을 생성.
+  */
+
+  variationImage1.src =
+    capturedPhoto;
+
+  variationImage2.src =
+    capturedPhoto;
+
+  variationImage3.src =
+    capturedPhoto;
+
+
+  setVariationFilter(
+    "warm"
+  );
+
+
+  reviewPanel.classList.add(
+    "show"
+  );
+
+}
+
+
+/* =====================================================
+   AI VARIATIONS
+===================================================== */
+
+document
+  .querySelectorAll(".variation")
+  .forEach(
+    variation => {
+
+      variation.addEventListener(
+        "click",
+        () => {
+
+          document
+            .querySelectorAll(".variation")
+            .forEach(
+              item =>
+                item.classList.remove(
+                  "selected"
+                )
+            );
+
+
+          variation.classList.add(
+            "selected"
+          );
+
+
+          selectedFilter =
+            variation.dataset.filter;
+
+
+          setVariationFilter(
+            selectedFilter
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+function setVariationFilter(
+  filter
+) {
+
+  let filterValue =
+    "";
+
+
+  if(filter === "warm") {
+
+    filterValue =
+      "contrast(1.05) saturate(.82) sepia(.12)";
+
+  }
+
+  else if(filter === "film") {
+
+    filterValue =
+      "contrast(1.08) saturate(.65) sepia(.18)";
+
+  }
+
+  else if(filter === "mono") {
+
+    filterValue =
+      "grayscale(.85) contrast(1.08)";
+
+  }
+
+
+  draftImage.style.filter =
+    filterValue;
+
+
+  aiDraftPhoto =
+    capturedPhoto;
+
+}
+
+
+/* =====================================================
+   HUMAN STICKERS
+===================================================== */
+
+document
+  .querySelectorAll(".sticker")
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        document
+          .querySelectorAll(".sticker")
+          .forEach(
+            b => b.classList.remove(
+              "selected"
+            )
+          );
+
+
+        button.classList.add(
+          "selected"
+        );
+
+
+        selectedSticker =
+          button.dataset.sticker;
+
+      }
+    );
+
+  });
+
+
+/* =====================================================
+   HUMAN FINALIZE
+===================================================== */
+
+finalizeButton.addEventListener(
+  "click",
+  finalizeWork
+);
+
+
+function finalizeWork() {
+
+  const finalText =
+    caption.value.trim()
+    || "pola:us";
+
+
+  setStep(3);
+
+
+  aiDraft.classList.remove(
+    "show"
+  );
+
+
+  finalResult.classList.add(
+    "show"
+  );
+
+
+  finalImage.src =
+    aiDraftPhoto;
+
+
+  finalImage.style.filter =
+    getSelectedFilter();
+
+
+  finalCaption.textContent =
+    finalText
+    +
+    (
+      selectedSticker
+      ? " " + selectedSticker
+      : ""
+    );
+
+
+  const now =
+    new Date();
+
+
+  finalDate.textContent =
+
+    now.getFullYear()
+    + "."
+    + String(
+        now.getMonth() + 1
+      ).padStart(2,"0")
+    + "."
+    + String(
+        now.getDate()
+      ).padStart(2,"0");
+
+
+  finalResult.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+
+}
+
+
+function getSelectedFilter() {
+
+  if(selectedFilter === "film") {
+
+    return "contrast(1.08) saturate(.65) sepia(.18)";
+
+  }
+
+
+  if(selectedFilter === "mono") {
+
+    return "grayscale(.85) contrast(1.08)";
+
+  }
+
+
+  return "contrast(1.05) saturate(.82) sepia(.12)";
+
+}
+
+
+/* =====================================================
+   DOWNLOAD FINAL POLAROID
+===================================================== */
+
+downloadButton.addEventListener(
+  "click",
+  downloadFinal
+);
+
+
+function downloadFinal() {
+
+  if(!aiDraftPhoto) {
+
+    alert(
+      "먼저 작품을 완성해주세요."
+    );
+
+    return;
+
+  }
+
+
+  const img =
+    new Image();
+
+
+  img.onload =
+    () => {
+
+      const out =
+        document.createElement(
+          "canvas"
+        );
+
+
+      const ctx =
+        out.getContext("2d");
+
+
+      out.width =
+        1200;
+
+      out.height =
+        1420;
+
+
+      /* WHITE */
+
+      ctx.fillStyle =
+        "#fff";
+
+
+      ctx.fillRect(
+        0,
+        0,
+        1200,
+        1420
+      );
+
+
+      /* PHOTO */
+
+      const margin =
+        60;
+
+
+      const photoW =
+        1080;
+
+      const photoH =
+        1050;
+
+
+      const scale =
+        Math.max(
+          photoW / img.width,
+          photoH / img.height
+        );
+
+
+      const drawW =
+        img.width * scale;
+
+
+      const drawH =
+        img.height * scale;
+
+
+      const x =
+        (1200 - drawW) / 2;
+
+
+      const y =
+        margin +
+        (photoH - drawH) / 2;
+
+
+      ctx.save();
+
+
+      ctx.beginPath();
+
+
+      ctx.rect(
+        margin,
+        margin,
+        photoW,
+        photoH
+      );
+
+
+      ctx.clip();
+
+
+      ctx.filter =
+        getSelectedFilter();
+
+
+      ctx.drawImage(
+        img,
+        x,
+        y,
+        drawW,
+        drawH
+      );
+
+
+      ctx.restore();
+
+
+      /* CAPTION */
+
+      ctx.filter =
+        "none";
+
+
+      ctx.fillStyle =
+        "#111";
+
+
+      ctx.textAlign =
+        "center";
+
+
+      ctx.font =
+        "42px Georgia";
+
+
+      ctx.fillText(
+        finalCaption.textContent,
+        600,
+        1190
+      );
+
+
+      /* DATE */
+
+      ctx.fillStyle =
+        "#999";
+
+
+      ctx.font =
+        "20px Arial";
+
+
+      ctx.fillText(
+        finalDate.textContent,
+        600,
+        1235
+      );
+
+
+      /* BRAND */
+
+      ctx.fillStyle =
+        "#111";
+
+
+      ctx.font =
+        "24px Georgia";
+
+
+      ctx.fillText(
+        "pola:us",
+        600,
+        1340
+      );
+
+
+      const link =
+        document.createElement(
+          "a"
+        );
+
+
+      link.download =
+        "pola-us-final.png";
+
+
+      link.href =
+        out.toDataURL(
+          "image/png"
+        );
+
+
+      link.click();
+
+    };
+
+
+  img.src =
+    aiDraftPhoto;
+
+}
+
+
+/* =====================================================
+   MEMORY WALL
+===================================================== */
+
+wallButton.addEventListener(
+  "click",
+  saveMemory
+);
+
+
+function saveMemory() {
+
+  if(!aiDraftPhoto) {
+
+    alert(
+      "먼저 작품을 완성해주세요."
+    );
+
+    return;
+
+  }
+
+
+  const memories =
+    JSON.parse(
+      localStorage.getItem(
+        "polaUsMemories"
+      )
+      || "[]"
+    );
+
+
+  memories.unshift({
+
+    image:
+      aiDraftPhoto,
+
+    caption:
+      finalCaption.textContent,
+
+    date:
+      finalDate.textContent,
+
+    filter:
+      selectedFilter,
+
+    rotation:
+      (
+        Math.random() * 6 - 3
+      ).toFixed(2)
+
+  });
+
+
+  if(memories.length > 12) {
+
+    memories.pop();
+
+  }
+
+
+  localStorage.setItem(
+    "polaUsMemories",
+    JSON.stringify(
+      memories
+    )
+  );
+
+
+  renderMemoryWall();
+
+
+  document
+    .getElementById("memory")
+    .scrollIntoView({
+      behavior: "smooth"
+    });
+
+}
+
+
+function renderMemoryWall() {
+
+  const memories =
+    JSON.parse(
+      localStorage.getItem(
+        "polaUsMemories"
+      )
+      || "[]"
+    );
+
+
+  memoryWall.innerHTML =
+    "";
+
+
+  if(memories.length === 0) {
+
+    memoryWall.innerHTML = `
+
+      <div
+        style="
+          grid-column:1/-1;
+          text-align:center;
+          padding:80px 20px;
+          color:#999;
+        "
+      >
+
+        아직 남겨진 기억이 없습니다.
+
+        <br>
+
+        당신의 첫 번째 순간을
+        남겨보세요.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  memories.forEach(
+    memory => {
+
+      const card =
+        document.createElement(
+          "div"
+        );
+
+
+      card.className =
+        "memory-card";
+
+
+      card.style.setProperty(
+        "--rotation",
+        memory.rotation + "deg"
+      );
+
+
+      const image =
+        document.createElement(
+          "img"
+        );
+
+
+      image.src =
+        memory.image;
+
+
+      image.alt =
+        "Memory";
+
+
+      image.style.filter =
+        getFilterFromName(
+          memory.filter
+        );
+
+
+      const captionElement =
+        document.createElement(
+          "div"
+        );
+
+
+      captionElement.className =
+        "memory-caption";
+
+
+      captionElement.textContent =
+        memory.caption;
+
+
+      const meta =
+        document.createElement(
+          "div"
+        );
+
+
+      meta.className =
+        "memory-meta";
+
+
+      meta.textContent =
+        memory.date
+        + " · HUMAN × AI";
+
+
+      card.appendChild(
+        image
+      );
+
+
+      card.appendChild(
+        captionElement
+      );
+
+
+      card.appendChild(
+        meta
+      );
+
+
+      memoryWall.appendChild(
+        card
+      );
+
+    }
+  );
+
+}
+
+
+function getFilterFromName(
+  filter
+) {
+
+  if(filter === "film") {
+
+    return "contrast(1.08) saturate(.65) sepia(.18)";
+
+  }
+
+
+  if(filter === "mono") {
+
+    return "grayscale(.85) contrast(1.08)";
+
+  }
+
+
+  return "contrast(1.05) saturate(.82) sepia(.12)";
+
+}
+
+
+/* =====================================================
+   AGAIN
+===================================================== */
+
+againButton.addEventListener(
+  "click",
+  () => {
+
+    capturedPhoto =
+      null;
+
+    aiDraftPhoto =
+      null;
+
+    selectedSticker =
+      "";
+
+    selectedFilter =
+      "warm";
+
+    caption.value =
+      "";
+
+
+    document
+      .querySelectorAll(".sticker")
+      .forEach(
+        b =>
+          b.classList.remove(
+            "selected"
+          )
+      );
+
+
+    document
+      .querySelectorAll(".variation")
+      .forEach(
+        b =>
+          b.classList.remove(
+            "selected"
+          )
+      );
+
+
+    variationWarm.classList.add(
+      "selected"
+    );
+
+
+    finalResult.classList.remove(
+      "show"
+    );
+
+    aiDraft.classList.remove(
+      "show"
+    );
+
+    aiProduction.classList.remove(
+      "show"
+    );
+
+
+    sourcePreview.classList.remove(
+      "show"
+    );
+
+
+    photoUpload.value =
+      "";
+
+
+    videoPlaceholder.style.display =
+      "flex";
+
+
+    statusText.textContent =
+      "카메라 또는 사진 업로드를 선택해주세요.";
+
+
+    setStep(1);
+
+
+    document
+      .getElementById("briefBox")
+      .scrollIntoView({
+        behavior: "smooth"
+      });
+
+  }
+);
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function goToCreation() {
+
+  document
+    .getElementById("creation")
+    .scrollIntoView({
+      behavior: "smooth"
+    });
+
+}
+
+
+/* =====================================================
+   CAMERA EVENTS
+===================================================== */
+
+startButton.addEventListener(
+  "click",
+  startCamera
+);
+
+
+captureButton.addEventListener(
+  "click",
+  takePhoto
+);
+
+
+stopButton.addEventListener(
+  "click",
+  stopCamera
+);
+
+
+/* =====================================================
+   MEMORY INITIALIZE
+===================================================== */
+
+renderMemoryWall();
+
+
+/* =====================================================
+   CAMERA SUPPORT CHECK
+===================================================== */
+
+if(
+  !navigator.mediaDevices ||
+  !navigator.mediaDevices.getUserMedia
+) {
+
+  statusText.textContent =
+    "카메라는 사용할 수 없습니다. 사진 업로드를 이용해주세요.";
+
+}
+
+</script>
+
+</body>
+</html>
+```
